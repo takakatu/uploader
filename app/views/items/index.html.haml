@@ -1,0 +1,12 @@
+=link_to new_user_session_path do
+  アカウント作成
+=link_to destroy_user_session_path, method: :delete do
+  ログアウト
+=link_to new_item_path do
+  商品出品
+.item-list
+  - @items.each do |item|
+    = item.name
+    - @image = Image.find_by(item_id: item.id)
+    .item-image
+      = image_tag @image.photo.url

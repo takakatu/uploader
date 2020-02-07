@@ -1,0 +1,17 @@
+= form_with(model: @item, local: true ) do |f|
+  .item-name
+    =f.text_field :name, placeholder: "商品名"
+  .sell-uploader-container
+    画像フォーム
+  .sell-uploader-box
+    = f.fields_for :images do |image|
+      = image.file_field :photo
+  .listing-form-box
+    .listing-product-detail__category
+      = f.label 'カテゴリー', class: 'listing-default__label'
+      %span.listing-default--require 必須
+      .listing-select-wrapper
+        .listing-select-wrapper__box
+          //親カテゴリーのセレクトボックスの生成
+          = f.select :category_id, @category_parent_array, {}, {class: 'listing-select-wrapper__box--select', id: 'parent_category'}
+  = f.submit "出品"
